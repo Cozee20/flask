@@ -80,10 +80,10 @@ def benchmark_trie_operations(trie: Trie, words: list[str], iterations: int = 10
 if __name__ == "__main__":
     names = extract_names_from_file(filepath)
     trie = Trie()
-    # provide fallback words if the file contained no functions/classes
+   
     if not names:
         names = ["test", "example", "sample"]
-    # run the benchmark to obtain the result dictionary
+    
     result = benchmark_trie_operations(trie, names, iterations=1000)
 
     trie_benchmark_results = r"C:\Users\Hp ProBook 640 G5\flask\.devcontainer\test\results_autocomplete.md"

@@ -6,11 +6,11 @@ class TestTrie(unittest.TestCase):
         self.trie = Trie()
     
     def test_insert_and_search(self):
-        self.trie.insert("cat")
-        self.assertTrue(self.trie.search("cat"))
-        self.assertFalse(self.trie.search("dog"))
+        self.trie.insert("pat")
+        self.assertTrue(self.trie.search("pat"))
+        self.assertFalse(self.trie.search("pa"))
     
     def test_starts_with(self):
-        self.trie.insert("cat")
-        self.assertTrue(self.trie.starts_with("ca"))
+        self.trie.insert("pat")
+        self.assertTrue(self.trie.starts_with("pa"))
         self.assertFalse(self.trie.starts_with("do"))
