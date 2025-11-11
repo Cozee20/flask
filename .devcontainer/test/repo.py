@@ -4,16 +4,16 @@ import csv
 
 repo_path = r"C:\Users\Hp ProBook 640 G5\flask"
 
-# Output CSV file path
+
 output_file = os.path.join(repo_path, "results.csv")
 
-# Open the CSV file for writing
+
 with open(output_file, mode="w", newline="", encoding="utf-8") as csvfile:
     writer = csv.writer(csvfile)
-    writer.writerow(["File", "Type", "Name", "Docstring"])  # header row
+    writer.writerow(["File", "Type", "Name", "Docstring"])  
 
-    # Walk through the repo directory
-    for root, _, files in os.walk(repo_path):  # traverse the directory
+    
+    for root, _, files in os.walk(repo_path):  
         for name in files:
             if not name.endswith(".py"):
                 continue
