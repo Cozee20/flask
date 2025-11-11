@@ -1,4 +1,13 @@
 File,Type,Name,Docstring
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Function,extract_names_from_file,Extract all function and class names from a Python file.
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Class,TrieNode,
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Class,Trie,
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Function,benchmark_trie_operations,
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Function,__init__,
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Function,__init__,
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Function,insert,
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Function,search,
+C:\Users\Hp ProBook 640 G5\flask\.devcontainer\trie.py,Function,starts_with,
 C:\Users\Hp ProBook 640 G5\flask\docs\conf.py,Function,github_link,
 C:\Users\Hp ProBook 640 G5\flask\docs\conf.py,Function,setup,
 C:\Users\Hp ProBook 640 G5\flask\examples\celery\src\task_app\tasks.py,Function,add,
