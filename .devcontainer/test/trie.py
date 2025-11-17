@@ -49,7 +49,7 @@ class Trie:
             curr = curr.children[c]
         return True
 def benchmark_trie_operations(trie: Trie, words: list[str], iterations: int = 1000) -> dict[str, float]:
-    insert_times = []
+    insert_times = [] 
     search_times = []
     prefix_times = []
 
@@ -92,7 +92,7 @@ if __name__ == "__main__":
         f.write("| Operation | Average Time (seconds) |\n")
         f.write(f"| Insert    | {result['insert_avg']:.10f}      |\n")
         f.write(f"| Search    | {result['search_avg']:.10f}      |\n")
-        f.write(f"| Starts With | {result['prefix_avg']:.10f}    |\n")
+        f.write(f"| Starts With | {result['prefix_avg']:.10f}   |\n")
 
 
   
