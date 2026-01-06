@@ -5,74 +5,82 @@ import csv
 file_full_pathh = r"C:\Users\Hp ProBook 640 G5\flask"
 output_file = os.path.join(file_full_pathh, "results.csv")
 
-def analyze_file(file_full_path): # Analyze a single Python file and extract classes, functions, docstrings, and function calls.
-    with open(file_full_path, "r", encoding="utf-8", errors="ignore") as f:
-        source = f.read()
+class DefinitionExtractor(ast.NodeVisitor):
 
-    try:
-        tree = ast.parse(source)
-    except SyntaxError:
-        return []
+    def __init__(self):
+        self.functions = []
+        self.classes = []
 
-    results = []
+    def visit_FunctionDef(self, node):
+        self.functions.append({
+            "name": node.name, 
+            "line": node.lineno
+        })
+        self.generic_visit(node)
 
-    def get_func_name(node):
-        if isinstance(node, ast.Name):
-            return node.id
-        elif isinstance(node, ast.Attribute):
-            return get_func_name(node.value) + "." + node.attr
-        return ""
+    def visit_ClassDef(self, node):
+        self.classes.append({
+            "name": node.name,
+            "line": node.lineno
+        })
+        self.generic_visit(node)
 
-    for node in ast.walk(tree):
+class DocstringReader(ast.NodeVisitor):
 
-        # CLASS
-        if isinstance(node, ast.ClassDef):
-            class_name = node.name
-            class_doc = (ast.get_docstring(node) or "").replace("\n", " ").strip()
+    def visit_FunctionDef(self, node):
+       
+        docstring = ast.get_docstring(node)
+        
+        if docstring:
+            print(f"Function '{node.name}' has docstring: {docstring}")
+        else:
+            print(f"Function '{node.name}' has NO docstring.")
 
-            results.append([
-                file_full_path,
-                "Class",
-                class_name,
-                class_doc,
-                ""
-            ])
+       
+        self.generic_visit(node)
 
-        # FUNCTION
-        elif isinstance(node, ast.FunctionDef):
-            func_name = node.name
-            func_doc = (ast.get_docstring(node) or "").replace("\n", " ").strip()
+  
 
-            calls = []
-            for child in ast.walk(node):
-                if isinstance(child, ast.Call):
-                    calls.append(get_func_name(child.func))
+class NameFinder(ast.NodeVisitor):
+    def visit_FunctionDef(self, node):
+        print(f"DEFINED function: '{node.name}'")
+        self.generic_visit(node)
 
-            results.append([
-                file_full_path,
-                "Function",
-                func_name,
-                func_doc,
-                ", ".join(calls)
-            ])
-
-    return results
+    def visit_Call(self, node):
+        if isinstance(node.func, ast.Name):
+            print(f"CALLED function:  '{node.func.id}'")
+        self.generic_visit(node)
 
 
-# WRITE RESULTS INTO CSV
+
+
 with open(output_file, mode="w", newline="", encoding="utf-8") as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerow(["File", "Type", "Name", "Docstring", "Function Calls"])
+    fieldnames = ["type", "name", "line"]
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
 
     for root, _, files in os.walk(file_full_pathh):
         for file in files:
             if file.endswith(".py"):
-                full_path = os.path.join(root, file)
-                rows = analyze_file(full_path)
-                for row in rows:
-                    writer.writerow(row)
+                file_path = os.path.join(root, file)
+                with open(file_path, "r", encoding="utf-8") as f:
+                    tree = ast.parse(f.read(), filename=file_path)
+                    extractor = DefinitionExtractor() 
+                    extractor.visit(tree) 
 
-print(f"Extraction complete! Results saved to: {output_file}")
+                    for func in extractor.functions:
+                        writer.writerow({
+                            "type": "function",
+                            "name": func["name"],
+                            "line": func["line"]
+                        })
+
+                    for cls in extractor.classes:
+                        writer.writerow({
+                            "type": "class",
+                            "name": cls["name"],
+                            "line": cls["line"]
+                        })
 
 
     
