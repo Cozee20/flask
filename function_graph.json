@@ -1,0 +1,37 @@
+{
+    "analyze_repo": [],
+    "__init__": [
+        "TrieNode"
+    ],
+    "visit_FunctionDef": [],
+    "visit_Call": [],
+    "dfs": [
+        "dfs"
+    ],
+    "has_cycle": [
+        "visit"
+    ],
+    "visit": [
+        "visit"
+    ],
+    "visit_ClassDef": [],
+    "setUp": [
+        "Trie"
+    ],
+    "test_insert_and_search": [],
+    "test_starts_with": [],
+    "extract_names_from_file": [],
+    "insert": [
+        "TrieNode"
+    ],
+    "search": [],
+    "starts_with": [],
+    "brute_force_autocomplete": [],
+    "trie_autocomplete": [],
+    "run_brute": [
+        "brute_force_autocomplete"
+    ],
+    "run_trie": [
+        "trie_autocomplete"
+    ]
+}
