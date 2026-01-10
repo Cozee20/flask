@@ -14,7 +14,19 @@
     "visit": [
         "visit"
     ],
+    "vectorize_text": [
+        "SentenceTransformer"
+    ],
+    "new_func": [],
+    "load_resources": [
+        "SentenceTransformer"
+    ],
+    "search_ai": [],
     "visit_ClassDef": [],
+    "load_functions": [],
+    "build_index": [
+        "SentenceTransformer"
+    ],
     "setUp": [
         "Trie"
     ],
