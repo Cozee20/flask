@@ -81,7 +81,7 @@ if __name__ == "__main__":
             if query.lower() == "q":
                 break
 
-            results = engine.semantic_search(query)
+            results = engine.semanticsearch(query)
             if not results:
                 print("No matches found")
                 continue

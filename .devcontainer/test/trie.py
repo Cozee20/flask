@@ -38,17 +38,30 @@ class Trie:
             if c not in curr.children:
                 return False
             curr = curr.children[c]
-        return curr.is_end_of_word
+        return curr.is_end_of_word 
 
-    def starts_with(self, prefix: str) -> bool:
+    def starts_with(self, prefix: str)  -> bool:
         curr = self.root
         for c in prefix:
             if c not in curr.children:
                 return False
             curr = curr.children[c]
-        return curr.is_end_of_word
 
+    def autocomplete(self, prefix):
+        node = self.root
+        for cur in prefix:
+            if cur not in node.children:
+                return []
+            node = node.children[cur]
+        results = []
+        self.collect_words(node, prefix, results)
+        return results
 
+    def collect_words(self, node, prefix, results):
+        if node.is_end_of_word:
+            results.append(prefix)
+        for cur, child_node in node.children.items():
+            self.collect_words(child_node, prefix + cur, results)
 
 
 definitions = extract_names_from_file(filepath)
