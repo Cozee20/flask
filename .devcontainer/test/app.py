@@ -32,15 +32,19 @@ if query:
     # Autocomplete
     st.subheader("🔤 Autocomplete Suggestions")
     suggestions = trie.starts_with(query)
-    st.write(suggestions[:10])
+    if isinstance(suggestions, list):
+        st.write(suggestions[:10])
+    else:
+        st.write("No suggestions found" if not suggestions else suggestions)
 
     # Dependencies
     st.subheader("🔗 Dependencies")
-    deps = FunctionFinder(query)
+    deps = FunctionFinder()
     st.write(deps if deps else "No dependencies found")
 
     # Semantic Search
     st.subheader("🤖 Semantic Matches")
-    results = SearchEngine(query)
+    search_engine = SearchEngine(function_names)
+    results = search_engine.search(query)
     for r in results:
         st.write(f"**{r['name']}** — {r['docstring']}")
