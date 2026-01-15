@@ -30,12 +30,12 @@ if query:
     suggestions = trie.autocomplete(query)
     st.write(suggestions[:10])
 
-    # Dependencies
+    # Dependencies 
     st.subheader("Dependencies")
     deps = get_dependencies(query)
     st.write(deps if deps else "No dependencies found")
 
-    # Semantic Search
+    # Semantic Searches
     st.subheader("Semantic Matches")
 
     engine = SearchEngine(function_names)
