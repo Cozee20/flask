@@ -43,7 +43,7 @@ class SearchEngine:
 
         print(f"Indexed {len(function_names)} functions")
 
-    def semantic_search(self, query, top_k=5):
+    def semanticsearch(self, query, top_k=5):
         if not self.function_names:
             return []
 

@@ -1,6 +1,7 @@
 {
     "analyze_repo": [],
     "__init__": [
+        "SentenceTransformer",
         "TrieNode"
     ],
     "visit_FunctionDef": [],
@@ -14,7 +15,13 @@
     "visit": [
         "visit"
     ],
+    "vectorize_from_csv": [
+        "SentenceTransformer"
+    ],
+    "hybrid_search": [],
     "visit_ClassDef": [],
+    "load_function_names": [],
+    "semanticsearch": [],
     "setUp": [
         "Trie"
     ],

@@ -106,7 +106,7 @@ if queries:
     )
     trie_avg = trie_time / (5 * len(queries))
     print(f"Trie avg query time:        {trie_avg:.8f} seconds")
-    
+
     if trie_avg < brute_avg:
         print(f"Trie is {brute_avg / trie_avg:.2f}x faster.")
 else:
