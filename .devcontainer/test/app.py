@@ -44,6 +44,10 @@ if query:
 
     # Semantic Search
     st.subheader("🤖 Semantic Matches")
+   # If function_names is a dictionary like {line_num: "name"}, extract just the names
+if isinstance(function_names, dict):
+    search_engine = SearchEngine(list(function_names.values()))
+else:
     search_engine = SearchEngine(function_names)
     results = search_engine.search(query)
     for r in results:
